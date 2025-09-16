@@ -2,6 +2,7 @@
   "name": "currency-exchange-rates",
   "version": "1.0.0",
   "description": "A React application for viewing currency exchange rates",
+  "homepage": ".",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
