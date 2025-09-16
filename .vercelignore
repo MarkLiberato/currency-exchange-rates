@@ -3,6 +3,5 @@ node_modules
 .gitignore
 README.md
 src
-public
 *.log
 .DS_Store
