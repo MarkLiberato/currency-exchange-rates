@@ -1,0 +1,861 @@
+.table-container {
+  background: var(--glass-effect);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-out;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.table-header {
+  background: linear-gradient(135deg, var(--gray-800), var(--gray-900));
+  color: white;
+  padding: var(--spacing-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.table-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.table-header h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.rates-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.rates-table th,
+.rates-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+  transition: all var(--transition-fast);
+}
+
+.rates-table th {
+  background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
+  font-weight: 700;
+  color: var(--gray-700);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.rates-table tbody tr {
+  transition: all var(--transition-normal);
+  animation: slideIn 0.4s ease-out;
+}
+
+.rates-table tbody tr:nth-child(even) {
+  background: var(--gray-50);
+}
+
+.rates-table tbody tr:hover {
+  background: var(--primary-light);
+  transform: scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+
+.rates-table tbody tr:hover td {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.rate-value {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  color: var(--success-color);
+  font-weight: 700;
+  font-size: 0.875rem;
+  background: linear-gradient(135deg, var(--success-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.rate-value::before {
+  margin-right: var(--spacing-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Currency symbols based on data-currency attribute */
+.rate-value[data-currency="USD"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="EUR"]::before {
+  content: '€';
+}
+
+.rate-value[data-currency="JPY"]::before {
+  content: '¥';
+}
+
+.rate-value[data-currency="GBP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="CHF"]::before {
+  content: 'CHF';
+}
+
+.rate-value[data-currency="CAD"]::before {
+  content: 'C$';
+}
+
+.rate-value[data-currency="AUD"]::before {
+  content: 'A$';
+}
+
+.rate-value[data-currency="NZD"]::before {
+  content: 'NZ$';
+}
+
+.rate-value[data-currency="SEK"]::before {
+  content: 'kr';
+}
+
+.rate-value[data-currency="NOK"]::before {
+  content: 'kr';
+}
+
+.rate-value[data-currency="DKK"]::before {
+  content: 'kr';
+}
+
+.rate-value[data-currency="PLN"]::before {
+  content: 'zł';
+}
+
+.rate-value[data-currency="CZK"]::before {
+  content: 'Kč';
+}
+
+.rate-value[data-currency="HUF"]::before {
+  content: 'Ft';
+}
+
+.rate-value[data-currency="RUB"]::before {
+  content: '₽';
+}
+
+.rate-value[data-currency="CNY"]::before {
+  content: '¥';
+}
+
+.rate-value[data-currency="KRW"]::before {
+  content: '₩';
+}
+
+.rate-value[data-currency="SGD"]::before {
+  content: 'S$';
+}
+
+.rate-value[data-currency="HKD"]::before {
+  content: 'HK$';
+}
+
+.rate-value[data-currency="INR"]::before {
+  content: '₹';
+}
+
+.rate-value[data-currency="BRL"]::before {
+  content: 'R$';
+}
+
+.rate-value[data-currency="MXN"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="ZAR"]::before {
+  content: 'R';
+}
+
+.rate-value[data-currency="TRY"]::before {
+  content: '₺';
+}
+
+.rate-value[data-currency="THB"]::before {
+  content: '฿';
+}
+
+.rate-value[data-currency="IDR"]::before {
+  content: 'Rp';
+}
+
+.rate-value[data-currency="PHP"]::before {
+  content: '₱';
+}
+
+.rate-value[data-currency="MYR"]::before {
+  content: 'RM';
+}
+
+.rate-value[data-currency="AED"]::before {
+  content: 'د.إ';
+}
+
+.rate-value[data-currency="SAR"]::before {
+  content: '﷼';
+}
+
+.rate-value[data-currency="QAR"]::before {
+  content: '﷼';
+}
+
+.rate-value[data-currency="KWD"]::before {
+  content: 'د.ك';
+}
+
+.rate-value[data-currency="BHD"]::before {
+  content: 'د.ب';
+}
+
+.rate-value[data-currency="OMR"]::before {
+  content: '﷼';
+}
+
+.rate-value[data-currency="JOD"]::before {
+  content: 'د.ا';
+}
+
+.rate-value[data-currency="LBP"]::before {
+  content: 'ل.ل';
+}
+
+.rate-value[data-currency="EGP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="ILS"]::before {
+  content: '₪';
+}
+
+.rate-value[data-currency="PKR"]::before {
+  content: '₨';
+}
+
+.rate-value[data-currency="BDT"]::before {
+  content: '৳';
+}
+
+.rate-value[data-currency="LKR"]::before {
+  content: '₨';
+}
+
+.rate-value[data-currency="NPR"]::before {
+  content: '₨';
+}
+
+.rate-value[data-currency="MMK"]::before {
+  content: 'K';
+}
+
+.rate-value[data-currency="KHR"]::before {
+  content: '៛';
+}
+
+.rate-value[data-currency="LAK"]::before {
+  content: '₭';
+}
+
+.rate-value[data-currency="VND"]::before {
+  content: '₫';
+}
+
+.rate-value[data-currency="UAH"]::before {
+  content: '₴';
+}
+
+.rate-value[data-currency="BGN"]::before {
+  content: 'лв';
+}
+
+.rate-value[data-currency="RON"]::before {
+  content: 'lei';
+}
+
+.rate-value[data-currency="HRK"]::before {
+  content: 'kn';
+}
+
+.rate-value[data-currency="RSD"]::before {
+  content: 'дин';
+}
+
+.rate-value[data-currency="MKD"]::before {
+  content: 'ден';
+}
+
+.rate-value[data-currency="BAM"]::before {
+  content: 'КМ';
+}
+
+.rate-value[data-currency="ALL"]::before {
+  content: 'L';
+}
+
+.rate-value[data-currency="ISK"]::before {
+  content: 'kr';
+}
+
+.rate-value[data-currency="UYU"]::before {
+  content: '$U';
+}
+
+.rate-value[data-currency="ARS"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="CLP"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="COP"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="PEN"]::before {
+  content: 'S/';
+}
+
+.rate-value[data-currency="BOB"]::before {
+  content: 'Bs';
+}
+
+.rate-value[data-currency="VES"]::before {
+  content: 'Bs.S';
+}
+
+.rate-value[data-currency="PYG"]::before {
+  content: '₲';
+}
+
+.rate-value[data-currency="GTQ"]::before {
+  content: 'Q';
+}
+
+.rate-value[data-currency="HNL"]::before {
+  content: 'L';
+}
+
+.rate-value[data-currency="NIO"]::before {
+  content: 'C$';
+}
+
+.rate-value[data-currency="CRC"]::before {
+  content: '₡';
+}
+
+.rate-value[data-currency="PAB"]::before {
+  content: 'B/.';
+}
+
+.rate-value[data-currency="DOP"]::before {
+  content: 'RD$';
+}
+
+.rate-value[data-currency="JMD"]::before {
+  content: 'J$';
+}
+
+.rate-value[data-currency="TTD"]::before {
+  content: 'TT$';
+}
+
+.rate-value[data-currency="BBD"]::before {
+  content: 'Bds$';
+}
+
+.rate-value[data-currency="XCD"]::before {
+  content: 'EC$';
+}
+
+.rate-value[data-currency="AWG"]::before {
+  content: 'ƒ';
+}
+
+.rate-value[data-currency="BZD"]::before {
+  content: 'BZ$';
+}
+
+.rate-value[data-currency="GYD"]::before {
+  content: 'G$';
+}
+
+.rate-value[data-currency="SRD"]::before {
+  content: 'SRD';
+}
+
+.rate-value[data-currency="FJD"]::before {
+  content: 'FJ$';
+}
+
+.rate-value[data-currency="PGK"]::before {
+  content: 'K';
+}
+
+.rate-value[data-currency="SBD"]::before {
+  content: 'SI$';
+}
+
+.rate-value[data-currency="VUV"]::before {
+  content: 'Vt';
+}
+
+.rate-value[data-currency="WST"]::before {
+  content: 'WS$';
+}
+
+.rate-value[data-currency="TOP"]::before {
+  content: 'T$';
+}
+
+.rate-value[data-currency="BTN"]::before {
+  content: 'Nu.';
+}
+
+.rate-value[data-currency="MVR"]::before {
+  content: 'Rf';
+}
+
+.rate-value[data-currency="SCR"]::before {
+  content: '₨';
+}
+
+.rate-value[data-currency="MUR"]::before {
+  content: '₨';
+}
+
+.rate-value[data-currency="KMF"]::before {
+  content: 'CF';
+}
+
+.rate-value[data-currency="DJF"]::before {
+  content: 'Fdj';
+}
+
+.rate-value[data-currency="ETB"]::before {
+  content: 'Br';
+}
+
+.rate-value[data-currency="KES"]::before {
+  content: 'KSh';
+}
+
+.rate-value[data-currency="TZS"]::before {
+  content: 'TSh';
+}
+
+.rate-value[data-currency="UGX"]::before {
+  content: 'USh';
+}
+
+.rate-value[data-currency="RWF"]::before {
+  content: 'RF';
+}
+
+.rate-value[data-currency="BIF"]::before {
+  content: 'FBu';
+}
+
+.rate-value[data-currency="MWK"]::before {
+  content: 'MK';
+}
+
+.rate-value[data-currency="ZMW"]::before {
+  content: 'ZK';
+}
+
+.rate-value[data-currency="BWP"]::before {
+  content: 'P';
+}
+
+.rate-value[data-currency="SZL"]::before {
+  content: 'E';
+}
+
+.rate-value[data-currency="LSL"]::before {
+  content: 'L';
+}
+
+.rate-value[data-currency="NAD"]::before {
+  content: 'N$';
+}
+
+.rate-value[data-currency="AOA"]::before {
+  content: 'Kz';
+}
+
+.rate-value[data-currency="MZN"]::before {
+  content: 'MT';
+}
+
+.rate-value[data-currency="MGA"]::before {
+  content: 'Ar';
+}
+
+.rate-value[data-currency="CDF"]::before {
+  content: 'FC';
+}
+
+.rate-value[data-currency="GMD"]::before {
+  content: 'D';
+}
+
+.rate-value[data-currency="GNF"]::before {
+  content: 'FG';
+}
+
+.rate-value[data-currency="LRD"]::before {
+  content: 'L$';
+}
+
+.rate-value[data-currency="SLL"]::before {
+  content: 'Le';
+}
+
+.rate-value[data-currency="GHS"]::before {
+  content: '₵';
+}
+
+.rate-value[data-currency="NGN"]::before {
+  content: '₦';
+}
+
+.rate-value[data-currency="XOF"]::before {
+  content: 'CFA';
+}
+
+.rate-value[data-currency="XAF"]::before {
+  content: 'FCFA';
+}
+
+.rate-value[data-currency="STN"]::before {
+  content: 'Db';
+}
+
+.rate-value[data-currency="CVE"]::before {
+  content: '$';
+}
+
+.rate-value[data-currency="GIP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="FKP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="SHP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="TND"]::before {
+  content: 'د.ت';
+}
+
+.rate-value[data-currency="DZD"]::before {
+  content: 'د.ج';
+}
+
+.rate-value[data-currency="MAD"]::before {
+  content: 'د.م.';
+}
+
+.rate-value[data-currency="XPF"]::before {
+  content: '₣';
+}
+
+.rate-value[data-currency="AMD"]::before {
+  content: '֏';
+}
+
+.rate-value[data-currency="AZN"]::before {
+  content: '₼';
+}
+
+.rate-value[data-currency="GEL"]::before {
+  content: '₾';
+}
+
+.rate-value[data-currency="KZT"]::before {
+  content: '₸';
+}
+
+.rate-value[data-currency="KGS"]::before {
+  content: 'лв';
+}
+
+.rate-value[data-currency="TJS"]::before {
+  content: 'SM';
+}
+
+.rate-value[data-currency="TMT"]::before {
+  content: 'T';
+}
+
+.rate-value[data-currency="UZS"]::before {
+  content: 'лв';
+}
+
+.rate-value[data-currency="AFN"]::before {
+  content: '؋';
+}
+
+.rate-value[data-currency="IRR"]::before {
+  content: '﷼';
+}
+
+.rate-value[data-currency="IQD"]::before {
+  content: 'ع.د';
+}
+
+.rate-value[data-currency="SYP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="YER"]::before {
+  content: '﷼';
+}
+
+.rate-value[data-currency="ESP"]::before {
+  content: '₧';
+}
+
+.rate-value[data-currency="ITL"]::before {
+  content: '₤';
+}
+
+.rate-value[data-currency="DEM"]::before {
+  content: 'DM';
+}
+
+.rate-value[data-currency="FRF"]::before {
+  content: '₣';
+}
+
+.rate-value[data-currency="NLG"]::before {
+  content: 'ƒ';
+}
+
+.rate-value[data-currency="BEF"]::before {
+  content: '₣';
+}
+
+.rate-value[data-currency="ATS"]::before {
+  content: 'S';
+}
+
+.rate-value[data-currency="FIM"]::before {
+  content: 'mk';
+}
+
+.rate-value[data-currency="IEP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="PTE"]::before {
+  content: '₣';
+}
+
+.rate-value[data-currency="GRD"]::before {
+  content: '₯';
+}
+
+.rate-value[data-currency="LUF"]::before {
+  content: '₣';
+}
+
+.rate-value[data-currency="SIT"]::before {
+  content: 'SIT';
+}
+
+.rate-value[data-currency="SKK"]::before {
+  content: 'Sk';
+}
+
+.rate-value[data-currency="CYP"]::before {
+  content: '£';
+}
+
+.rate-value[data-currency="MTL"]::before {
+  content: '₤';
+}
+
+.rate-value[data-currency="LVL"]::before {
+  content: 'Ls';
+}
+
+.rate-value[data-currency="LTL"]::before {
+  content: 'Lt';
+}
+
+.rate-value[data-currency="EEK"]::before {
+  content: 'kr';
+}
+
+/* Fallback for currencies not in the list */
+.rate-value:not([data-currency])::before {
+  content: '💰';
+}
+
+.loading {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--gray-600);
+  background: var(--glass-effect);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto var(--spacing-md);
+}
+
+.loading p {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--gray-700);
+  margin-bottom: var(--spacing-xs);
+}
+
+.loading small {
+  color: var(--gray-500);
+  font-size: 0.75rem;
+}
+
+.error {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: var(--danger-color);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-lg) 0;
+  border: 1px solid #fecaca;
+  position: relative;
+  overflow: hidden;
+}
+
+.error::before {
+  content: '⚠️';
+  display: block;
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+  animation: pulse 2s infinite;
+}
+
+.error::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.no-data {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--gray-500);
+  background: var(--glass-effect);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-lg) 0;
+  border: 1px dashed var(--gray-300);
+}
+
+.no-data::before {
+  content: '📊';
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+  animation: pulse 3s infinite;
+}
+
+.no-data::after {
+  content: 'No exchange rate data available for the selected period';
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-top: var(--spacing-md);
+}
+
+/* Enhanced table responsiveness */
+@media (max-width: 1024px) {
+  .rates-table {
+    font-size: 0.75rem;
+  }
+  
+  .rates-table th,
+  .rates-table td {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .table-container {
+    margin: 0 calc(-1 * var(--spacing-sm));
+    border-radius: 0;
+  }
+  
+  .rates-table {
+    font-size: 0.625rem;
+  }
+  
+  .rates-table th,
+  .rates-table td {
+    padding: var(--spacing-xs);
+  }
+  
+  .rate-value {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rates-table th,
+  .rates-table td {
+    padding: var(--spacing-xs);
+  }
+  
+  .table-header h2 {
+    font-size: 1rem;
+  }
+}
+
